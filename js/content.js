@@ -35,7 +35,7 @@ chrome.storage.sync.get('id', function(items) {
   });
 
   socket.on(CHAT_HISTORY_ENENT, function(messages){
-    for (var i = 0; i < messages.length; i++) {
+    for (var i = messages.length - 1; i >= 0; i--) {
       var obj = messages[i];
       if (obj.uid !== uid){
         $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
