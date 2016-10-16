@@ -19,7 +19,8 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": ["jquery-3.1.1.min.js", "content.js"]
+      "js": ["socket.io-1.4.5.js", "jquery-3.1.1.min.js", "content.js"],
+      "css": ["style.css"]
     }
   ]
 }
