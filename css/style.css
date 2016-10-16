@@ -17,9 +17,6 @@
 #cwc-form {
   background: #000;
   padding: 3px;
-  /* position: fixed;
-  bottom: 0;
-  width: 100%;*/
 }
 
 #cwc-form input {
@@ -56,3 +53,4 @@
 #cwc-messages li:nth-child(even) {
   background: #fff;
 }
+
