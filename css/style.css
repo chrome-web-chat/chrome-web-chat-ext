@@ -1,17 +1,18 @@
-#cwc-foo, #cwc-form, #cwc-msg, #cwc-messages, #cwc-name {
+#cwc-container, #cwc-form, #cwc-msg, #cwc-message-list, #cwc-name {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-#cwc-foo {
+#cwc-container {
   position: fixed;
   bottom: 0;
   right: 0;
   font: 13px;
   Helvetica, Arial;
-  width: 50%;
+  width: 500px;
   display: none;
+  border: 1px solid rgba(29, 49, 91, .3);
 }
 
 #cwc-form {
@@ -36,21 +37,46 @@
   padding: 10px;
 }
 
-#cwc-messages {
+#cwc-message-list {
+  background: #bee4f9;
   list-style-type: none;
+  overflow-x: hidden;
+  overflow-y: auto;
   margin: 0;
   padding: 0;
+  height: 300px;
 }
 
-#cwc-messages li {
+#cwc-message-list li {
   padding: 5px 10px;
 }
 
-#cwc-messages li:nth-child(odd) {
-  background: #eee;
+.cwc-message-received > .cwc-bubble {
+  background: #fff;
+  margin-right: 60px;
 }
 
-#cwc-messages li:nth-child(even) {
-  background: #fff;
+.cwc-message-sent > .cwc-bubble {
+  background: #32a8e6;
+  margin-left: 60px;
+}
+
+.cwc-bubble {
+  border-radius: 18px;
+  padding: 8px 14px;
+}
+
+.my-name {
+  text-align:right;
+  padding-right: 30px;
+  font-size: 14px;
+  color: #777;
+}
+
+.their-name {
+  text-align:left;
+  padding-left: 30px;
+  font-size: 14px;
+  color: #777;
 }
 
