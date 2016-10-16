@@ -29,7 +29,7 @@ chrome.storage.sync.get('id', function(items) {
     }
   });
 
-  socket.on('chat message', function(obj){
+  socket.on(CHAT_MESSAGE_ENENT, function(obj){
     $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
     console.log(obj.username + ': ' + obj.content);
   });
