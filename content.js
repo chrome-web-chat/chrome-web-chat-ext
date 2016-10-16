@@ -13,3 +13,9 @@ $('#cwc-form').submit(function(){
   $('#cwc-msg').val('');
   return false;
 });
+
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+  if (msg.action == 'TOGGLE_CHAT') {
+    $('#cwc-foo').toggle("slow", function(){});
+  }
+});
