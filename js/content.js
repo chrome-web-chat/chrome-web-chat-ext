@@ -2,14 +2,14 @@ const CHAT_MESSAGE_ENENT = 'chat message';
 const CHAT_HISTORY_ENENT = 'chat history';
 
 chrome.storage.sync.get('id', function(items) {
-  var id = items.id;
-  if (!id) {
-    console.log('id not found');
+  var uid = items.uid;
+  if (!uid) {
+    console.log('uid not found');
     return;
   }
   var url = encodeURIComponent(document.location.href);
   var serverUrl = 'https://chrome-web-chat.herokuapp.com';
-  var socket = io.connect(serverUrl, { query: 'url=' + url + '&id=' + id });
+  var socket = io.connect(serverUrl, { query: 'url=' + url + '&uid=' + uid });
 
   $('body').append('<div id="cwc-container"></div>');
 
@@ -37,7 +37,11 @@ chrome.storage.sync.get('id', function(items) {
   socket.on(CHAT_HISTORY_ENENT, function(messages){
     for (var i = 0; i < messages.length; i++) {
       var obj = messages[i];
-      $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
+      if (obj.uid !== uid){
+        $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
+      }else{
+        $('#cwc-message-list').append('<li class="cwc-message-sent"><div class="my-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
+      }
       console.log(obj.username + ': ' + obj.content);
     }
   });
