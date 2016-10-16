@@ -1,19 +1,15 @@
-* {
+#cwc-foo, #cwc-form, #cwc-msg, #cwc-messages, #cwc-name {
   margin: 0;
   padding: 0;
-  box-sizing:
-  border-box;
+  box-sizing: border-box;
 }
 
-body {
-  font: 13px;
-  Helvetica, Arial;
-}
-
-#foo {
+#cwc-foo {
   position: fixed;
   bottom: 0;
   right: 0;
+  font: 13px;
+  Helvetica, Arial;
   width: 50%;
 }
 
@@ -31,7 +27,7 @@ body {
   margin-right: .5%;
 }
 
-#msg {
+#cwc-msg {
   width: 70%;
 }
 
@@ -42,17 +38,20 @@ body {
   padding: 10px;
 }
 
-#messages {
+#cwc-messages {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-#messages li {
+#cwc-messages li {
   padding: 5px 10px;
 }
 
-#messages li:nth-child(odd) {
+#cwc-messages li:nth-child(odd) {
   background: #eee;
 }
 
+#cwc-messages li:nth-child(even) {
+  background: #fff;
+}

@@ -2,14 +2,14 @@ var url = encodeURIComponent(document.location.href);
 console.log("url: " + url);
 var socket = io.connect('https://chrome-web-chat.herokuapp.com', { query: 'url=' + url });
 socket.on('chat message', function(obj){
-  $('#messages').append($('<li>').text(obj.name + ': ' + obj.msg));
+  $('#cwc-messages').append($('<li>').text(obj.name + ': ' + obj.msg));
   console.log(obj.name + ': ' + obj.msg);
 });
-$("body").append('<div id="foo"><ul id="messages"></ul><form id="cwc-form" action=""><label for="name">Name</label><input id="name" autocomplete="off" /><label for="msg">Message</label><input id="msg" autocomplete="off" /><button>Send</button></form></div>');
+$("body").append('<div id="cwc-foo"><ul id="cwc-messages"></ul><form id="cwc-form" action=""><label for="cwc-name">Name</label><input id="cwc-name" autocomplete="off" /><label for="cwc-msg">Message</label><input id="cwc-msg" autocomplete="off" /><button>Send</button></form></div>');
 $('#cwc-form').submit(function(){
-  var obj = { name: $('#name').val(), msg: $('#msg').val() };
+  var obj = { name: $('#cwc-name').val(), msg: $('#cwc-msg').val() };
   socket.emit('chat message', obj);
-  $('#messages').append($('<li>').text(obj.name + ': ' + obj.msg));
-  $('#msg').val('');
+  $('#cwc-messages').append($('<li>').text(obj.name + ': ' + obj.msg));
+  $('#cwc-msg').val('');
   return false;
 });
