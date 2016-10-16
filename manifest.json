@@ -6,22 +6,22 @@
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "img/icon.png",
     "default_title": "Toggle Chat"
   },
   "permissions": [
     "activeTab"
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["js/background.js"]
   },
   "content_scripts": [
     {
       "matches": [
         "<all_urls>"
       ],
-      "js": ["socket.io-1.4.5.js", "jquery-3.1.1.min.js", "content.js"],
-      "css": ["style.css"]
+      "js": ["lib/socket.io-1.4.5.js", "lib/jquery-3.1.1.min.js", "js/content.js"],
+      "css": ["css/style.css"]
     }
   ]
 }

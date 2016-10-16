@@ -1,6 +1,6 @@
 var url = encodeURIComponent(document.location.href);
-console.log("url: " + url);
-var socket = io.connect('https://chrome-web-chat.herokuapp.com', { query: 'url=' + url });
+var serverUrl = 'https://chrome-web-chat.herokuapp.com';
+var socket = io.connect(serverUrl, { query: 'url=' + url });
 socket.on('chat message', function(obj){
   $('#cwc-messages').append($('<li>').text(obj.name + ': ' + obj.msg));
   console.log(obj.name + ': ' + obj.msg);
@@ -19,3 +19,4 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     $('#cwc-foo').toggle("slow", function(){});
   }
 });
+
