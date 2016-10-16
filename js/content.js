@@ -2,7 +2,7 @@ const CHAT_MESSAGE_ENENT = 'chat message';
 const CHAT_HISTORY_ENENT = 'chat history';
 
 chrome.storage.sync.get('id', function(items) {
-  var uid = items.uid;
+  var uid = items.id;
   if (!uid) {
     console.log('uid not found');
     return;
