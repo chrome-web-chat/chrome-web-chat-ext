@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
 
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtgc9f6a0T/jPJhOL1UPWWSgHqaAP2z4pE3qSFalL6ftERfUY+LN00iDNrYvVI/Rkz6AJc+TQRt+PaWLgxPmihoDcueKEazly/3lGalzLIptbKYCxQQUSwiao0YzH5/VNEI2efwMKRM4rI8UA9G470r7JKwFiQZYiDAwccegUSamFXniyf4RhqAlJuYEKJfpOkGRHoBG1Bhl9p8Mc3J9mWP+DyVP4dMENkW4GEWGm8+ifn4u2XmjufZuCwg6jS1uJDMu0C2E1YQAUgXr48hz6b4qXQpQ8mrGdaORS8IMaNbEdkE1GFLZCqRUDaEdDRNyhZZtKVQO/gyzE4n+jdZSNpQIDAQAB",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApIyFdDiYFkLFYg9j/k0+KtdFckH9wRUrpQY11qJSFe7cmlPlcg2ALPMnbmgBuf+NEEew23xeQcSASvbjWAJDYuSdncnl15aCuacTuox4qaQEInXIk2WL7orO/VTjtvPjJPob0raHkDDvlKBfkw3kuO2h3bpqsVGwUGxZs8l+O2IwuW7VhFyngkLudYTAUswX8ZEdk7EifuSrlgpxvXLa5MpfP5OIsM7EdUOcCYOZrNSMcf+X9FhIborHh4TxdxJWY3pTZ1oqK/mhCVmHS+lU9AHctb+nq4+AzdyinJHa7ahGAOf51rhCQYgcgmcjoMdvOeJABkVYDLCKCQsZLDfyXQIDAQAB",
 
   "name": "Chrome Web Chat",
   "description": "This extension adds a chat to every website you visit",
-  "version": "1.0",
+  "version": "1.0.1",
 
   "browser_action": {
     "default_icon": "img/icon.png",
@@ -18,7 +18,7 @@
     "storage"
   ],
   "oauth2": {
-    "client_id": "504193714183-3pqivlcubbj5lg1pq9q7af3u6f91u1p5.apps.googleusercontent.com",
+    "client_id": "504193714183-c0unb468f9oqc88ks66vdsb6vn87an9n.apps.googleusercontent.com",
     "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
   },
   "background": {
