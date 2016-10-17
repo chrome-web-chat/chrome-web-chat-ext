@@ -15,7 +15,9 @@ chrome.storage.sync.get('id', function(items) {
 
   $('#cwc-container').load(chrome.extension.getURL('content.html'), function() {
     $('#cwc-form').submit(function(){
-      var obj = { username: $('#cwc-name').val(), content: $('#cwc-msg').val() };
+      var username = $('#cwc-name').val().length? $('#cwc-name').val() : "Anonymous";
+      var content = $('#cwc-msg').val().length? $('#cwc-msg').val() : " ";
+      var obj = { username: username, content: content };
       socket.emit('chat message', obj);
       $('#cwc-message-list').append('<li class="cwc-message-sent"><div class="my-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
       $('#cwc-msg').val('');
