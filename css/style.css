@@ -12,19 +12,40 @@
   Helvetica, Arial;
   width: 500px;
   display: none;
-  border: 1px solid rgba(29, 49, 91, .3);
-  z-index: 2147483647;  
+  border: 5px solid #468BBF;
+  border-radius: 5px;
+  z-index: 2147483647;
 }
 
 #cwc-form {
-  background: #000;
+  background: #53A4E3;
   padding: 3px;
+  color: white;
 }
 
 #cwc-form input {
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-right: .5%;
+  outline: none;
+}
+
+#cwc-submit-btn {
+  background: #53A4E3;
+  color: #468BBF;
   border: 0;
   padding: 10px;
   margin-right: .5%;
+}
+
+#cwc-submit-btn:enabled {
+  color: white;
+}
+
+#cwc-submit-btn:disabled {
+  color: #468BBF;
 }
 
 #cwc-msg {
@@ -33,7 +54,7 @@
 
 #cwc-form button, #cwc-form label {
   width: 9%;
-  background: rgb(130, 224, 255);
+  outline: none;
   border: none;
   padding: 10px;
 }
@@ -73,13 +94,16 @@
   text-align:right;
   padding-right: 30px;
   font-size: 14px;
-  color: #eee;
+  color: #474c57;
 }
 
 .their-name {
   text-align:left;
   padding-left: 30px;
   font-size: 14px;
-  color: #eee;
+  color: #474c57;
 }
 
+ #cwc-form > ::-webkit-input-placeholder {
+  color: rgb(70, 139, 191);
+}

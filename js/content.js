@@ -28,6 +28,18 @@ chrome.storage.sync.get('id', function(items) {
   $('body').append('<div id="cwc-container"></div>');
 
   $('#cwc-container').load(chrome.extension.getURL('content.html'), function() {
+    // initially disable sending chat message
+    $('#cwc-submit-btn').attr('disabled', 'disabled');
+
+    // enable send button if content is not empty
+    $('#cwc-msg').keyup(function() {
+      if ($(this).val()) {
+        $('#cwc-submit-btn').removeAttr('disabled');
+      } else {
+        $('#cwc-submit-btn').attr('disabled', 'disabled');
+      }
+    });
+
     $('#cwc-form').submit(function(){
       var username = $('#cwc-name').val().length? $('#cwc-name').val() : "Anonymous";
       var content = $('#cwc-msg').val().length? $('#cwc-msg').val() : " ";
