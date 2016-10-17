@@ -31,19 +31,23 @@ chrome.storage.sync.get('id', function(items) {
     }
   });
 
+  function displayMessage(obj){
+    if (obj.uid !== uid){
+      $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
+    }else{
+      $('#cwc-message-list').append('<li class="cwc-message-sent"><div class="my-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
+    }
+  }
+
   socket.on(CHAT_MESSAGE_ENENT, function(obj){
-    $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
+    displayMessage(obj);
     console.log(obj.username + ': ' + obj.content);
   });
 
   socket.on(CHAT_HISTORY_ENENT, function(messages){
     for (var i = messages.length - 1; i >= 0; i--) {
       var obj = messages[i];
-      if (obj.uid !== uid){
-        $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
-      }else{
-        $('#cwc-message-list').append('<li class="cwc-message-sent"><div class="my-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
-      }
+      displayMessage(obj);
       console.log(obj.username + ': ' + obj.content);
     }
   });
