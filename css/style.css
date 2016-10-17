@@ -13,6 +13,7 @@
   width: 500px;
   display: none;
   border: 1px solid rgba(29, 49, 91, .3);
+  z-index: 2147483647;  
 }
 
 #cwc-form {
