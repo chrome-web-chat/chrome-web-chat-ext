@@ -1,5 +1,6 @@
 const CHAT_MESSAGE_EVENT = 'chat message';
 const CHAT_HISTORY_EVENT = 'chat history';
+const USER_LIST_EVENT = 'user list';
 
 var uid;
 var email;
@@ -79,6 +80,11 @@ chrome.storage.sync.get('userInfo', function(items) {
       console.log(obj.username + ': ' + obj.content);
     }
     scroll(0);
+  });
+
+  socket.on(USER_LIST_EVENT, function(obj){
+    // TODO: implement this
+    console.log(obj);
   });
 
 });
