@@ -9,11 +9,18 @@ function scroll(time) {
   $('#cwc-message-list').animate({scrollTop: $('#cwc-message-list').prop("scrollHeight")}, time);
 }
 
+function linkify(text) {
+  var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+  return text.replace(urlRegex, function(url) {
+    return '<a href="' + url + '">' + url + '</a>';
+  });
+}
+
 function addMessage(obj) {
   if (uid === obj.uid) {
-    $('#cwc-message-list').append('<li class="cwc-message-sent"><div class="my-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
+    $('#cwc-message-list').append('<li class="cwc-message-sent"><div class="my-name">' + obj.username + '</div><div class="cwc-bubble">' + linkify(obj.content) + '</div></li>');
   } else {
-    $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + obj.content + '</div></li>');
+    $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + linkify(obj.content) + '</div></li>');
   }
 }
 
