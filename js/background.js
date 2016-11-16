@@ -6,6 +6,6 @@ chrome.identity.getAuthToken({ 'interactive': true }, function (token) {
   console.log(token);
   chrome.identity.getProfileUserInfo(function (userInfo) {
     console.log(userInfo);
-    chrome.storage.sync.set({ id: userInfo.id });
+    chrome.storage.sync.set({ userInfo: userInfo });
   });
 });

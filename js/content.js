@@ -2,6 +2,7 @@ const CHAT_MESSAGE_EVENT = 'chat message';
 const CHAT_HISTORY_EVENT = 'chat history';
 
 var uid;
+var email;
 
 function scroll(time) {
   $('#cwc-message-list').animate({scrollTop: $('#cwc-message-list').prop("scrollHeight")}, time);
@@ -15,15 +16,16 @@ function addMessage(obj) {
   }
 }
 
-chrome.storage.sync.get('id', function(items) {
-  uid = items.id;
-  if (!uid) {
-    console.log('uid not found');
+chrome.storage.sync.get('userInfo', function(items) {
+  uid = items.userInfo.id;
+  email = items.userInfo.email;
+  if (!uid || !email) {
+    console.log('uid or email not found');
     return;
   }
   var url = encodeURIComponent(document.location.href);
   var serverUrl = 'https://chrome-web-chat.herokuapp.com';
-  var socket = io.connect(serverUrl, { query: 'url=' + url + '&uid=' + uid });
+  var socket = io.connect(serverUrl, { query: 'url=' + url + '&uid=' + uid + '&email=' + email });
 
   $('body').append('<div id="cwc-container"></div>');
 
