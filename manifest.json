@@ -17,6 +17,13 @@
     "identity.email",
     "storage"
   ],
+  "optional_permissions": [
+    "notifications"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true    
+  },
   "oauth2": {
     "client_id": "504193714183-c0unb468f9oqc88ks66vdsb6vn87an9n.apps.googleusercontent.com",
     "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
