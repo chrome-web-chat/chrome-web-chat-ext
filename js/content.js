@@ -38,9 +38,14 @@ chrome.storage.sync.get('userInfo', function(items) {
     console.log('uid or email not found');
     return;
   }
-  var url = encodeURIComponent(document.location.href);
-  var serverUrl = 'https://chrome-web-chat.herokuapp.com';
-  var socket = io.connect(serverUrl, { query: 'url=' + url + '&uid=' + uid + '&email=' + email });
+
+  var socket;
+
+  chrome.storage.sync.get({global_enable: true}, function(items) {
+    if (items.global_enable) {
+      socket = createSocket();
+    }
+  });
 
   $('body').append('<div id="cwc-container"></div>');
 
@@ -58,8 +63,12 @@ chrome.storage.sync.get('userInfo', function(items) {
     });
 
     $('#cwc-close-chat').click(function() {
-      $('#cwc-container').toggle("slow", function(){});
-      scroll(0);
+      chrome.storage.sync.get({global_enable: true}, function(items) {
+        if (items.global_enable) {
+          $('#cwc-container').toggle("slow", function(){});
+          scroll(0);
+        }
+      });
     });
 
     $('#cwc-form').submit(function(){
@@ -76,11 +85,34 @@ chrome.storage.sync.get('userInfo', function(items) {
 
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action == 'TOGGLE_CHAT') {
-      $('#cwc-container').toggle("slow", function(){});
-      scroll(0);
+      chrome.storage.sync.get({global_enable: true}, function(items) {
+        if (items.global_enable) {
+          $('#cwc-container').toggle("slow", function(){});
+          scroll(0);
+        }
+      });
+    } else if (msg.action == 'TOGGLE_GLOBAL_ENABLE') {
+      chrome.storage.sync.get({global_enable: true}, function(items) {
+        var isEnabled = items.global_enable;
+        if (!isEnabled) {
+          $('#cwc-container').hide("slow", function(){});
+          console.log("disconnect socket");
+          socket.io.close();
+        } else {
+          console.log("reconnect socket");
+          socket = createSocket();
+          $('#cwc-container').show("slow", function(){});
+        }
+      });
     }
   });
+});
 
+function createSocket() {
+  var url = encodeURIComponent(document.location.href);
+  var serverUrl = 'https://chrome-web-chat.herokuapp.com';
+  var obj = { query: 'url=' + url + '&uid=' + uid + '&email=' + email };
+  var socket = io.connect(serverUrl, obj);
   socket.on(CHAT_MESSAGE_EVENT, function(obj){
     addMessage(obj);
     notify(obj);
@@ -102,4 +134,6 @@ chrome.storage.sync.get('userInfo', function(items) {
     console.log(obj);
   });
 
-});
+  return socket;
+}
+
