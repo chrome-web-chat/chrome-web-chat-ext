@@ -71,6 +71,11 @@ chrome.storage.sync.get('userInfo', function(items) {
       });
     });
 
+    $('#cwc-minimize-chat').click(function() {
+      $('#cwc-main-content').slideToggle("slow", function(){});
+      scroll(0);
+    });
+
     $('#cwc-form').submit(function(){
       var username = $('#cwc-name').val().length? $('#cwc-name').val() : "Anonymous";
       var content = $('#cwc-msg').val().length? $('#cwc-msg').val() : " ";
