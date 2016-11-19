@@ -24,6 +24,13 @@ function addMessage(obj) {
   }
 }
 
+function notify(obj) {
+  console.log(obj);
+  chrome.runtime.sendMessage(obj, function(response) {
+    console.log(response.retMsg);
+  });
+}
+
 chrome.storage.sync.get('userInfo', function(items) {
   uid = items.userInfo.id;
   email = items.userInfo.email;
@@ -76,6 +83,7 @@ chrome.storage.sync.get('userInfo', function(items) {
 
   socket.on(CHAT_MESSAGE_EVENT, function(obj){
     addMessage(obj);
+    notify(obj);
     scroll(500);
     console.log(obj.username + ': ' + obj.content);
   });
