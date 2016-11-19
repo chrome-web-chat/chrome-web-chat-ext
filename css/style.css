@@ -150,6 +150,7 @@
 .cwc-bubble {
   border-radius: 18px;
   padding: 8px 14px;
+  overflow-wrap: break-word;
 }
 
 .my-name {
