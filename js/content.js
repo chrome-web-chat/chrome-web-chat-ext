@@ -39,12 +39,25 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
     return;
   }
 
+
   var socket;
   if (items.global_enable) {
     socket = createSocket();
   }
 
   $('body').append('<div id="cwc-container"></div>');
+  $('body').append('<div id="dialog" title="Users in Chat"><ul id="cwc-user-list"></ul></div>');
+  $( "#dialog" ).dialog({
+    autoOpen: false,
+    show: {
+      effect: "fade",
+      duration: 500
+    },
+    hide: {
+      effect: "fade",
+      duration: 500
+    }
+  });
 
   if (items.themeNumber == 2) {
     $('#cwc-container').addClass('red');
@@ -96,6 +109,10 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
       $('#cwc-msg').val('');
       return false;
     });
+
+    $('#cwc-user-list-btn').click(function() {
+      $('#dialog').dialog('open');
+    });
   });
 
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
@@ -144,9 +161,11 @@ function createSocket() {
     scroll(0);
   });
 
-  socket.on(USER_LIST_EVENT, function(obj){
-    // TODO: implement this
-    console.log("hi" + obj);
+  socket.on(USER_LIST_EVENT, function(arr){
+    $('#cwc-user-list').empty();
+    for (var i = 0; i < arr.length; i++) {
+      $('#cwc-user-list').append('<li>' + arr[i] + '</li>');
+    }
   });
 
   return socket;
