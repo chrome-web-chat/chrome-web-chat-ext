@@ -31,7 +31,7 @@ function notify(obj) {
   });
 }
 
-chrome.storage.sync.get('userInfo', function(items) {
+chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, function(items) {
   uid = items.userInfo.id;
   email = items.userInfo.email;
   if (!uid || !email) {
@@ -40,14 +40,19 @@ chrome.storage.sync.get('userInfo', function(items) {
   }
 
   var socket;
-
-  chrome.storage.sync.get({global_enable: true}, function(items) {
-    if (items.global_enable) {
-      socket = createSocket();
-    }
-  });
+  if (items.global_enable) {
+    socket = createSocket();
+  }
 
   $('body').append('<div id="cwc-container"></div>');
+
+  if (items.themeNumber == 2) {
+    $('#cwc-container').addClass('red');
+  }
+
+  if (items.themeNumber == 3) {
+    $('#cwc-container').addClass('gray');
+  }
 
   $('#cwc-container').draggable({axis: "x", stop: function( event, ui ) {
       $('#cwc-container').css('top', 'auto');

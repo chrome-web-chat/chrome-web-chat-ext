@@ -1,6 +1,10 @@
 // Saves options to chrome.storage.sync.
 function save_options() {
   var notifications = document.getElementById('notifications').checked;
+  var blueTheme = document.getElementById('radio-1').checked;
+  var redTheme = document.getElementById('radio-2').checked;
+  var grayTheme = document.getElementById('radio-3').checked;
+
   // TODO add event listener instead of conditional check or store options within callback
   // TODO Fix spaghetti code
   // TODO Fix permission revocation
@@ -26,9 +30,14 @@ function save_options() {
       }
     });
   }
-  
+
+  var themeNumber = 1;
+  if (redTheme) themeNumber = 2;
+  if (grayTheme) themeNumber = 3;
+  console.log(themeNumber);
   chrome.storage.sync.set({
-    notificationsEnabled: notifications
+    notificationsEnabled: notifications,
+    themeNumber: themeNumber
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -43,9 +52,11 @@ function save_options() {
 // stored in chrome.storage.
 function restore_options() {
   chrome.storage.sync.get({
-    notificationsEnabled: false
+    notificationsEnabled: false,
+    themeNumber: 1
   }, function(items) {
     document.getElementById('notifications').checked = items.notificationsEnabled;
+    document.getElementById('radio-' + items.themeNumber).checked = true;
   });
 }
 document.addEventListener('DOMContentLoaded', restore_options);

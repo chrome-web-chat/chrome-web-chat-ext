@@ -17,6 +17,14 @@
   z-index: 2147483647;
 }
 
+#cwc-container.red {
+  border: 4px solid #BF4646;
+}
+
+#cwc-container.gray {
+  border: 4px solid #BCBCBC;
+}
+
 #cwc-topbar {
   background: #53A4E3;
   color: white;
@@ -24,10 +32,26 @@
   padding: 5px 25px;
 }
 
+.red #cwc-topbar {
+  background: #E35252;
+}
+
+.gray #cwc-topbar {
+  background: #c6c6c6;
+}
+
 #cwc-form {
   background: #53A4E3;
   padding: 3px;
   color: white;
+}
+
+.red #cwc-form {
+  background: #E35252;
+}
+
+.gray #cwc-form {
+  background: #c6c6c6;
 }
 
 #cwc-form input {
@@ -41,10 +65,17 @@
 
 #cwc-submit-btn {
   background: #53A4E3;
-  color: #468BBF;
   border: 0;
   padding: 10px;
   margin-right: .5%;
+}
+
+.red #cwc-submit-btn {
+  background: #E35252;
+}
+
+.gray #cwc-submit-btn {
+  background: #c6c6c6;
 }
 
 #cwc-submit-btn:enabled {
@@ -53,6 +84,14 @@
 
 #cwc-submit-btn:disabled {
   color: #468BBF;
+}
+
+.red #cwc-submit-btn:disabled {
+  color: #bf4646;
+}
+
+.gray #cwc-submit-btn:disabled {
+  color: #a1a1a1;
 }
 
 #cwc-msg {
@@ -76,6 +115,14 @@
   height: 300px;
 }
 
+.red #cwc-message-list {
+  background: #f9bdbd;
+}
+
+.gray #cwc-message-list {
+  background: #f7f7f7;
+}
+
 #cwc-message-list li {
   padding: 5px 10px;
 }
@@ -90,6 +137,14 @@
   background: #32a8e6;
   margin-left: 60px;
   color: #fff;
+}
+
+.red .cwc-message-sent > .cwc-bubble {
+  background: #e63131;
+}
+
+.gray .cwc-message-sent > .cwc-bubble {
+  background: #c6c6c6;
 }
 
 .cwc-bubble {
@@ -111,6 +166,15 @@
   color: #474c57;
 }
 
- #cwc-form > ::-webkit-input-placeholder {
-  color: rgb(70, 139, 191);
+#cwc-form > ::-webkit-input-placeholder {
+  color: #468BBF;
 }
+
+.red #cwc-form > ::-webkit-input-placeholder {
+  color: #bf4646;
+}
+
+.gray #cwc-form > ::-webkit-input-placeholder {
+  color: #a1a1a1;
+}
+
