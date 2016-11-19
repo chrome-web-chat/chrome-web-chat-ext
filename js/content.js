@@ -49,6 +49,11 @@ chrome.storage.sync.get('userInfo', function(items) {
 
   $('body').append('<div id="cwc-container"></div>');
 
+  $('#cwc-container').draggable({axis: "x", stop: function( event, ui ) {
+      $('#cwc-container').css('top', 'auto');
+    }
+  });
+
   $('#cwc-container').load(chrome.extension.getURL('content.html'), function() {
     // initially disable sending chat message
     $('#cwc-submit-btn').attr('disabled', 'disabled');
@@ -72,7 +77,7 @@ chrome.storage.sync.get('userInfo', function(items) {
     });
 
     $('#cwc-minimize-chat').click(function() {
-      $('#cwc-main-content').slideToggle("slow", function(){});
+      $('#cwc-main-content').toggle("blind", "slow");
       scroll(0);
     });
 
@@ -136,7 +141,7 @@ function createSocket() {
 
   socket.on(USER_LIST_EVENT, function(obj){
     // TODO: implement this
-    console.log(obj);
+    console.log("hi" + obj);
   });
 
   return socket;
