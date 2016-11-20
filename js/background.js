@@ -57,18 +57,34 @@ chrome.runtime.onMessage.addListener(
     }
 
     // Create the notification using tab id as notification id
-    chrome.notifications.create(sender.tab.id.toString(), {
-      type: 'basic',
-      title: 'New Message from ' + request.username,
-      message: request.content,
-      iconUrl: 'img/icon.png'
-    }, function() {});
+    chrome.tabs.query({'highlighted': true, 'currentWindow': true}, function(tabs) {
+      if (tabs[0].id != sender.tab.id) {
+        chrome.notifications.create(sender.tab.id.toString(), {
+          type: 'basic',
+          title: 'New Message from ' + request.username,
+          message: request.content,
+          iconUrl: 'img/icon.png'
+        }, function() {});
+      }
+    })
 
     sendResponse({retMsg: 'OK'});
-  });
+});
 
 // Move to the tab on notification click
-chrome.notifications.onClicked.addListener(function(notificationID) {
-  chrome.tabs.update(parseInt(notificationID), {highlighted: true});
+chrome.notifications.onClicked.addListener(function(tabId) {
+  window.focus();
+  chrome.tabs.get(parseInt(tabId), function(tab) {
+    chrome.tabs.highlight({'tabs': tab.index}, function() {});
+  });
+  chrome.notifications.clear(tabId, function() {});
+});
+
+chrome.notifications.onButtonClicked.addListener(function(tabId) {
+  window.focus();
+  chrome.tabs.get(parseInt(tabId), function(tab) {
+    chrome.tabs.highlight({'tabs': tab.index}, function() {});
+  });
+  chrome.notifications.clear(tabId, function() {});
 });
 
