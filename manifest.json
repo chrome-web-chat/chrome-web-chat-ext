@@ -39,9 +39,9 @@
         "<all_urls>"
       ],
       "js": ["lib/socket.io-1.4.5.js", "lib/jquery-3.1.1.min.js",
-      "lib/jquery-ui.min.js", "js/content.js", "lib/jquery.modal.min.js"],
+      "lib/jquery-ui.min.js", "js/content.js"],
       "css": ["css/style.css", "lib/font-awesome.min.css",
-      "lib/jquery-ui.min.css", "lib/jquery.modal.min.css"]
+      "lib/jquery-ui.min.css"]
     }
   ],
   "web_accessible_resources": [
