@@ -49,3 +49,6 @@ jspm_packages
 *.tgz
 
 *.zip
+
+# IDE
+.idea/
