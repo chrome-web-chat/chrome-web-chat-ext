@@ -140,7 +140,15 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
       });
     });
 
-
+    // initialize the favorite button to correct class
+    chrome.storage.sync.get('favorites', function(items) {
+      var favorites = items.favorites;
+      var url = document.location.href;
+      if (favorites && favorites.hasOwnProperty(url)){
+        $('#cwc-user-favorite-btn').toggleClass('fa-star-o');
+        $('#cwc-user-favorite-btn').toggleClass('fa-star');
+      }
+    });
 
   });
 
