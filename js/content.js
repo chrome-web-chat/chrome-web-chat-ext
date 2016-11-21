@@ -113,6 +113,31 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
     $('#cwc-user-list-btn').click(function() {
       $('#dialog').dialog('open');
     });
+
+    $('#cwc-user-favorite-btn').click(function() {
+      // frontend toggle
+      $('#cwc-user-favorite-btn').toggleClass('fa-star-o');
+      $('#cwc-user-favorite-btn').toggleClass('fa-star');
+      // backend storage: add or remove url
+      chrome.storage.sync.get('favorites', function(items) {
+        var favorites = items.favorites;
+        var url = document.location.href;
+        if (!favorites){
+          // no favorite yet
+          favorites = new Object;
+          favorites[url] = null;
+        }else{
+          // have favorite
+          if (favorites.hasOwnProperty(url)){
+            delete favorites[url];
+          }else{
+            favorites[url] = null;
+          }
+        }
+        chrome.storage.sync.set({ 'favorites': favorites }, function(){
+        });
+      });
+    });
   });
 
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
