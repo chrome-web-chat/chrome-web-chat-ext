@@ -1,6 +1,7 @@
 const CHAT_MESSAGE_EVENT = 'chat message';
 const CHAT_HISTORY_EVENT = 'chat history';
 const USER_LIST_EVENT = 'user list';
+const HISTORY_LIMIT = 20;
 
 var uid;
 var email;
@@ -138,6 +139,9 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
         });
       });
     });
+
+
+
   });
 
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
@@ -146,6 +150,26 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
         if (items.global_enable) {
           $('#cwc-container').toggle("slow", function(){});
           scroll(0);
+
+          // if the chat is open, update history
+          if ($('#cwc-container').is(":visible")){
+            chrome.storage.sync.get('history', function(items) {
+              var history = items.history;
+              var url = document.location.href;
+              if (!history){
+                // no history yet
+                history = [];
+              }
+              history.push(url);
+              // have history
+              if (history.length > HISTORY_LIMIT){
+                history.shift();
+              }
+              chrome.storage.sync.set({ 'history': history }, function(){
+              });
+            });
+
+          }
         }
       });
     } else if (msg.action == 'TOGGLE_GLOBAL_ENABLE') {
