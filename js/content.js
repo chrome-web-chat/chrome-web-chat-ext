@@ -232,8 +232,8 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
               if (history.length > HISTORY_LIMIT){
                 history.shift();
               }
-              console.log("history: ");
-              console.log(history);
+              // console.log("history: ");
+              // console.log(history);
               chrome.storage.sync.set({ 'history': history }, function(){
               });
             });
