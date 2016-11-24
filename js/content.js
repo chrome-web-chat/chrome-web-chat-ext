@@ -60,6 +60,19 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
     }
   });
 
+  $('body').append('<div id="cwc-favourite-dialog" title="Favourites"><ul id="cwc-favourite-list"></ul></div>');
+  $( "#cwc-favourite-dialog" ).dialog({
+    autoOpen: false,
+    show: {
+      effect: "fade",
+      duration: 500
+    },
+    hide: {
+      effect: "fade",
+      duration: 500
+    }
+  });
+
   if (items.themeNumber == 2) {
     $('#cwc-container').addClass('red');
   }
@@ -148,6 +161,20 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
         $('#cwc-user-favorite-btn').toggleClass('fa-star-o');
         $('#cwc-user-favorite-btn').toggleClass('fa-star');
       }
+    });
+
+    // show favourites
+    $('#cwc-user-bookmark-btn').click(function() {
+      $('#cwc-favourite-dialog').dialog('open');
+      $('#cwc-favourite-list').empty();
+      chrome.storage.sync.get('favorites', function(items) {
+        var favorites = items.favorites;
+        for (var url in favorites) {
+          if (favorites.hasOwnProperty(url)){
+            $('#cwc-favourite-list').append('<li>' + linkify(url) + '</li>');
+          }
+        }
+      });
     });
 
   });
