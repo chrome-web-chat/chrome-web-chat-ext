@@ -47,8 +47,8 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
   }
 
   $('body').append('<div id="cwc-container"></div>');
-  $('body').append('<div id="dialog" title="Users in Chat"><ul id="cwc-user-list"></ul></div>');
-  $( "#dialog" ).dialog({
+  $('body').append('<div id="cwc-dialog" title="Users in Chat"><ul id="cwc-user-list"></ul></div>');
+  $( "#cwc-dialog" ).dialog({
     autoOpen: false,
     show: {
       effect: "fade",
@@ -112,7 +112,7 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
     });
 
     $('#cwc-user-list-btn').click(function() {
-      $('#dialog').dialog('open');
+      $('#cwc-dialog').dialog('open');
     });
 
     $('#cwc-user-favorite-btn').click(function() {
