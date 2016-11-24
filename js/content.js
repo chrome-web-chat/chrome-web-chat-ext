@@ -5,6 +5,7 @@ const HISTORY_LIMIT = 20;
 
 var uid;
 var email;
+var lastUrl;
 
 function scroll(time) {
   $('#cwc-message-list').animate({scrollTop: $('#cwc-message-list').prop("scrollHeight")}, time);
@@ -62,6 +63,19 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
 
   $('body').append('<div id="cwc-favourite-dialog" title="Favourites"><ul id="cwc-favourite-list"></ul></div>');
   $( "#cwc-favourite-dialog" ).dialog({
+    autoOpen: false,
+    show: {
+      effect: "fade",
+      duration: 500
+    },
+    hide: {
+      effect: "fade",
+      duration: 500
+    }
+  });
+
+  $('body').append('<div id="cwc-history-dialog" title="History"><ul id="cwc-history-list"></ul></div>');
+  $( "#cwc-history-dialog" ).dialog({
     autoOpen: false,
     show: {
       effect: "fade",
@@ -177,6 +191,18 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
       });
     });
 
+    // show history
+    $('#cwc-recent-chat-btn').click(function() {
+      $('#cwc-history-dialog').dialog('open');
+      $('#cwc-history-list').empty();
+      chrome.storage.sync.get('history', function(items) {
+        var history = items.history;
+        for (var i = history.length - 1; i > 0; i-- ) {
+          $('#cwc-history-list').append('<li>' + linkify(history[i]) + '</li>');
+        }
+      });
+    });
+
   });
 
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
@@ -195,11 +221,19 @@ chrome.storage.sync.get({userInfo: null, global_enable: true, themeNumber: 1}, f
                 // no history yet
                 history = [];
               }
-              history.push(url);
+
+              // prevent continuous duplicate url in the same section
+              if (lastUrl === null || lastUrl!== url){
+                history.push(url);
+                lastUrl = url;
+              }
+
               // have history
               if (history.length > HISTORY_LIMIT){
                 history.shift();
               }
+              console.log("history: ");
+              console.log(history);
               chrome.storage.sync.set({ 'history': history }, function(){
               });
             });
@@ -240,7 +274,7 @@ function createSocket() {
     for (var i = messages.length - 1; i >= 0; i--) {
       var obj = messages[i];
       addMessage(obj);
-      console.log(obj.username + ': ' + obj.content);
+      // console.log(obj.username + ': ' + obj.content);
     }
     scroll(0);
   });
