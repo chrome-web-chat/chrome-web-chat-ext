@@ -102,7 +102,7 @@
 }
 
 #cwc-msg {
-  width: 70%;
+  width: 80%;
 }
 
 #cwc-form button, #cwc-form label {
@@ -118,7 +118,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   height: 300px;
 }
 
