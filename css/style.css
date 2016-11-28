@@ -12,24 +12,25 @@
   Helvetica, Arial;
   width: 500px;
   display: none;
-  border: 4px solid #468BBF;
+  /*border: 4px solid #468BBF;*/
   border-radius: 5px;
   z-index: 2147483646;
 }
 
 #cwc-container.red {
-  border: 4px solid #BF4646;
+  /*border: 4px solid #BF4646;*/
 }
 
 #cwc-container.gray {
-  border: 4px solid #BCBCBC;
+  /*border: 4px solid #BCBCBC;*/
 }
 
 #cwc-topbar {
   background: #53A4E3;
   color: white;
   text-align: right;
-  padding: 5px 25px;
+  padding: 8px 25px;
+  border-radius: 5px 5px 0 0;
 }
 
 .red #cwc-topbar {
