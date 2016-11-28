@@ -20,9 +20,9 @@ function linkify(text) {
 
 function addMessage(obj) {
   if (uid === obj.uid) {
-    $('#cwc-message-list').append('<li class="cwc-message-sent"><div class="my-name">' + obj.username + '</div><div class="cwc-bubble">' + linkify(obj.content) + '</div></li>');
+    $('<li class="cwc-message-sent"><div class="my-name">' + obj.username + '</div><div class="cwc-bubble">' + linkify(obj.content) + '</div></li>').appendTo("#cwc-message-list").hide().fadeIn(800);
   } else {
-    $('#cwc-message-list').append('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + linkify(obj.content) + '</div></li>');
+    $('<li class="cwc-message-received"><div class="their-name">' + obj.username + '</div><div class="cwc-bubble">' + linkify(obj.content) + '</div></li>').appendTo("#cwc-message-list").hide().fadeIn(800);
   }
 }
 
