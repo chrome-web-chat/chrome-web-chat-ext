@@ -54,6 +54,12 @@
   background: #c6c6c6;
 }
 
+.cwc-label{
+  display:inline;
+  color:white;
+  font-size: small;
+}
+
 #cwc-form input {
   background: transparent;
   color: white;
