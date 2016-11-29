@@ -274,7 +274,7 @@ function createSocket() {
     for (var i = messages.length - 1; i >= 0; i--) {
       var obj = messages[i];
       addMessage(obj);
-      // console.log(obj.username + ': ' + obj.content);
+      console.log(obj.username + ': ' + obj.content);
     }
     scroll(0);
   });
