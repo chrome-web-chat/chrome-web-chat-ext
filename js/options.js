@@ -5,9 +5,6 @@ function save_options() {
   var redTheme = document.getElementById('radio-2').checked;
   var grayTheme = document.getElementById('radio-3').checked;
 
-  // TODO add event listener instead of conditional check or store options within callback
-  // TODO Fix spaghetti code
-  // TODO Fix permission revocation
   if (notifications) {
     chrome.permissions.request({
       permissions: ['notifications']
